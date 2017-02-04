@@ -30,7 +30,7 @@ public class InteracServiceImpl implements InteracService
 
 	@Autowired
 	TransferRepository transferRepo;
-	
+
 	@Autowired
 	UserRepository userRepo;
 
@@ -42,7 +42,7 @@ public class InteracServiceImpl implements InteracService
 		logger.debug("Finding Transfer for id: %s", id);
 		return transferRepo.findOne(id);
 	}
-	
+
 	public Transfer getDummyTransfer(String id)
 	{
 		return null;
@@ -95,11 +95,9 @@ public class InteracServiceImpl implements InteracService
 		Validate.notEmpty(user.getUsername(), "input user.username can't be null or empty");
 
 		user.setPassword(null);
-		
+
 		return userRepo.save(user);
-		
+
 	}
-	
-	
 
 }

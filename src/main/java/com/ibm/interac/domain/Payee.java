@@ -12,13 +12,13 @@ public class Payee
 {
 	@Id
 	private String payeeId;
-	
+
 	private String username;
-	
+
 	private String refId;
-	
+
 	private String email;
-		
+
 	private String createdAt;
 
 	public String getPayeeId()
@@ -70,8 +70,7 @@ public class Payee
 	{
 		this.createdAt = createdAt;
 	}
-	
-	
+
 	public String toString()
 	{
 		ObjectMapper mapper = new ObjectMapper();
@@ -115,6 +114,4 @@ public class Payee
 		return true;
 	}
 
-	
-	
 }

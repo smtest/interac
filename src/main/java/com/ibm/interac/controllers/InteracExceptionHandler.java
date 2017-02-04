@@ -10,15 +10,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-
 @ControllerAdvice
 public class InteracExceptionHandler extends ResponseEntityExceptionHandler
 {
 	private static final Logger logger = LoggerFactory.getLogger(InteracExceptionHandler.class);
 
 	@ExceptionHandler(value = { IllegalArgumentException.class })
-	protected ResponseEntity<?> handleIllegalArgumentException(IllegalArgumentException ex,
-			WebRequest request)
+	protected ResponseEntity<?> handleIllegalArgumentException(IllegalArgumentException ex, WebRequest request)
 	{
 		logger.error(ex.getMessage(), ex);
 
@@ -36,6 +34,5 @@ public class InteracExceptionHandler extends ResponseEntityExceptionHandler
 				.contentType(MediaType.APPLICATION_JSON).body(ex.getMessage());
 		return response;
 	}
-
 
 }

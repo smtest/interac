@@ -12,13 +12,13 @@ public class Transfer
 {
 	@Id
 	private String id;
-	
+
 	private String username;
 
-	private String recepientEmail;	
-	
+	private String recepientEmail;
+
 	private Double amount;
-	
+
 	private String state;
 
 	private String createdAt;
@@ -111,7 +111,7 @@ public class Transfer
 			return false;
 		return true;
 	}
-	
+
 	public String toString()
 	{
 		ObjectMapper mapper = new ObjectMapper();
@@ -125,5 +125,5 @@ public class Transfer
 		}
 		return "";
 	}
-	
+
 }

@@ -14,16 +14,17 @@ public interface InteracService
 	 */
 	Transfer find(String id);
 
-	/**	 
+	/**
 	 * Creates new transfer request with state pending
 	 *
 	 * @param user
 	 * @return created account
 	 */
 	Transfer createTransfer(Transfer transfer);
-	
+
 	/**
 	 * Create new Payee
+	 * 
 	 * @param payee
 	 * @return
 	 */
@@ -36,7 +37,7 @@ public interface InteracService
 	 * @param update
 	 */
 	void saveChanges(Transfer update);
-	
+
 	User createUser(User user);
 
 }

@@ -13,22 +13,27 @@ public class User
 	@Id
 	String username;
 	String password;
+
 	public String getUsername()
 	{
 		return username;
 	}
+
 	public void setUsername(String name)
 	{
 		this.username = name;
 	}
+
 	public String getPassword()
 	{
 		return password;
 	}
+
 	public void setPassword(String password)
 	{
 		this.password = password;
 	}
+
 	@Override
 	public int hashCode()
 	{
@@ -37,6 +42,7 @@ public class User
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj)
 	{
@@ -70,5 +76,5 @@ public class User
 		}
 		return "";
 	}
-	
+
 }
