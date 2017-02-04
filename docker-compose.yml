@@ -1,0 +1,16 @@
+version: '2'
+services:
+ interacservice:
+  image: interacservice
+  container_name: interacservice
+  ports:
+  - "6000:6000"
+  volumes:
+  - /logs/ddapi/:/logs
+  environment:
+  - CONFIG_SERVER_URI=http://configserver:11013/configserver/
+  - PROFILE=development
+networks:
+  default:
+    external:
+      name: digiplat_default

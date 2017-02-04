@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: interac-service
+
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URI}
+
+  profiles:
+    active: ${PROFILE}
