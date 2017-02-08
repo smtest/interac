@@ -1,0 +1,158 @@
+{
+    "kind": "List",
+    "apiVersion": "v1",
+    "metadata": {},
+    "items": [
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "interacservice",
+                "namespace": "test",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "microservices",
+                    "name": "interacservice"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "OpenShiftNewApp"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Rolling",
+                    "rollingParams": {
+                        "updatePeriodSeconds": 1,
+                        "intervalSeconds": 1,
+                        "timeoutSeconds": 600,
+                        "maxUnavailable": "25%",
+                        "maxSurge": "25%"
+                    },
+                    "resources": {}
+                },
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "interacservice"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "namespace": "test",
+                                "name": "interacservice:latest"
+                            }
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "test": false,
+                "selector": {
+                    "app": "microservices",
+                    "deploymentconfig": "interacservice",
+                    "name": "interacservice"
+                },
+                "template": {
+                    "metadata": {
+                        "creationTimestamp": null,
+                        "labels": {
+                            "app": "microservices",
+                            "deploymentconfig": "interacservice",
+                            "name": "interacservice"
+                        },
+                        "annotations": {
+                            "openshift.io/container.interacservice.image.entrypoint": "[\"/bin/sh\",\"-c\",\"java -jar interacservice-0.0.1-SNAPSHOT.jar \\u003e /logs/interacservice.system.out.log\"]",
+                            "openshift.io/generated-by": "OpenShiftNewApp"
+                        }
+                    },
+                    "spec": {
+                        "volumes": [
+                            {
+                                "name": "interacservice-volume-1",
+                                "hostPath": {
+                                    "path": "/var/local/openshift/microservices/logs/"
+                                }
+                            }
+                        ],
+                        "containers": [
+                            {
+                                "name": "interacservice",
+                                "image": "172.30.104.218:5000/test/interacservice:latest",
+                                "ports": [
+                                    {
+                                        "containerPort": 6000,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "CONFIG_SERVER_URI",
+                                        "value": "http://configserver:11013/configserver/"
+                                    },
+                                    {
+                                        "name": "PROFILE",
+                                        "value": "development"
+                                    }
+                                ],
+                                "resources": {},
+                                "volumeMounts": [
+                                    {
+                                        "name": "interacservice-volume-1",
+                                        "mountPath": "/logs"
+                                    }
+                                ],
+                                "terminationMessagePath": "/dev/termination-log",
+                                "imagePullPolicy": "Always"
+                            }
+                        ],
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {}
+                    }
+                }
+            },
+            "status": {}
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "interacservice",
+                "namespace": "test",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "microservices",
+                    "name": "interacservice"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "OpenShiftNewApp"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "6000-tcp",
+                        "protocol": "TCP",
+                        "port": 6000,
+                        "targetPort": 6000
+                    }
+                ],
+                "selector": {
+                    "app": "microservices",
+                    "deploymentconfig": "interacservice",
+                    "name": "interacservice"
+                },
+                "type": "ClusterIP",
+                "sessionAffinity": "None"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        }
+    ]
+}
