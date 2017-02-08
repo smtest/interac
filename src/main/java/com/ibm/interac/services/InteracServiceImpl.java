@@ -39,8 +39,10 @@ public class InteracServiceImpl implements InteracService
 			@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE") })
 	public Transfer find(String id)
 	{
+		Validate.notNull(id, "input id can't be null");
 		logger.debug("Finding Transfer for id: %s", id);
 		return transferRepo.findOne(id);
+		//return null;
 	}
 
 	public Transfer getDummyTransfer(String id)
