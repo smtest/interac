@@ -33,7 +33,7 @@ public class InteracController
 	@PreAuthorize("authentication.name == #transfer.username")
 	public Transfer createNewTransfer(@RequestBody(required = true) Transfer transfer)
 	{
-		logger.debug("Creating transfer: %s", transfer);
+		logger.debug("Creating transfers: %s", transfer);
 		return interacService.createTransfer(transfer);
 	}
 
