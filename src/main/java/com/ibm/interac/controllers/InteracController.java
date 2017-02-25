@@ -26,6 +26,7 @@ public class InteracController
 	public Transfer getTransfer(@PathVariable String id)
 	{
 		logger.debug("Fetching transfer with id: %s", id);
+		logger.debug("Showcasing continuous delivery pipeline for interacservice");
 		return interacService.find(id);
 	}
 
