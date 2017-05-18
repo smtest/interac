@@ -60,7 +60,7 @@ public class InteracServiceImpl implements InteracService
 
 		transfer.setCreatedAt(DATE_FORMAT.format(new Date()));
 
-		transfer.setState("Initialized");
+		transfer.setState("Pending");
 
 		return transferRepo.save(transfer);
 	}
